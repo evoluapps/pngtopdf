@@ -1,0 +1,16 @@
+{
+  "name": "png-to-pdf-converter",
+  "version": "1.0.0",
+  "description": "A simple PNG to PDF converter web application",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "build": "echo 'No build required'"
+  },
+  "keywords": ["png", "pdf", "converter", "web"],
+  "author": "User",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.0.0"
+  }
+}

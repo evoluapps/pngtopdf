@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNG to PDF Converter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 800px;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .upload-area {
+            border: 3px dashed #ccc;
+            border-radius: 15px;
+            padding: 40px 20px;
+            margin: 30px 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: #fafafa;
+        }
+        
+        .upload-area:hover, .upload-area.dragover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .upload-icon {
+            font-size: 4rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .upload-text {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .upload-hint {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .preview-container {
+            margin: 30px 0;
+            display: none;
+        }
+        
+        .preview-title {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .image-preview {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-icon {
+            font-size: 1.2rem;
+        }
+        
+        .result-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            display: none;
+        }
+        
+        .result-title {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 5px 15px rgba(86, 171, 47, 0.4);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(86, 171, 47, 0.6);
+        }
+        
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .feature {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .feature-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PNG to PDF Converter</h1>
+        <p class="subtitle">Convert your PNG images to PDF documents quickly and easily</p>
+        
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📁</div>
+            <p class="upload-text">Drag & Drop your PNG files here</p>
+            <p class="upload-hint">or click to browse files (Supports multiple files)</p>
+            <input type="file" class="file-input" id="fileInput" accept=".png" multiple>
+        </div>
+        
+        <div class="preview-container" id="previewContainer">
+            <h3 class="preview-title">Image Preview</h3>
+            <img id="imagePreview" class="image-preview" alt="Preview">
+        </div>
+        
+        <div class="controls">
+            <button class="btn btn-primary" id="convertBtn" disabled>
+                <span class="btn-icon">🔄</span>
+                Convert to PDF
+            </button>
+            <button class="btn btn-secondary" id="resetBtn">
+                <span class="btn-icon">🗑️</span>
+                Reset
+            </button>
+        </div>
+        
+        <div class="result-section" id="resultSection">
+            <h3 class="result-title">Conversion Complete!</h3>
+            <p>Your PDF file is ready to download</p>
+            <br>
+            <button class="download-btn" id="downloadBtn">
+                <span class="btn-icon">📥</span>
+                Download PDF
+            </button>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h4 class="feature-title">Fast Conversion</h4>
+                <p class="feature-desc">Convert images to PDF in seconds</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <h4 class="feature-title">Secure</h4>
+                <p class="feature-desc">Files are processed locally in your browser</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🆓</div>
+                <h4 class="feature-title">Free</h4>
+                <p class="feature-desc">No registration or payment required</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            const convertBtn = document.getElementById('convertBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const previewContainer = document.getElementById('previewContainer');
+            const imagePreview = document.getElementById('imagePreview');
+            const resultSection = document.getElementById('resultSection');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            let selectedFiles = [];
+            
+            // Event listeners for drag and drop
+            uploadArea.addEventListener('click', () => fileInput.click());
+            
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+            
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+            
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                
+                const files = Array.from(e.dataTransfer.files);
+                handleFiles(files);
+            });
+            
+            fileInput.addEventListener('change', (e) => {
+                const files = Array.from(e.target.files);
+                handleFiles(files);
+            });
+            
+            function handleFiles(files) {
+                // Filter only PNG files
+                const pngFiles = files.filter(file => file.type === 'image/png' || file.name.toLowerCase().endsWith('.png'));
+                
+                if (pngFiles.length === 0) {
+                    alert('Please select PNG files only.');
+                    return;
+                }
+                
+                selectedFiles = pngFiles;
+                convertBtn.disabled = false;
+                
+                // Show preview of the first image
+                if (pngFiles.length > 0) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        imagePreview.src = e.target.result;
+                        previewContainer.style.display = 'block';
+                    };
+                    reader.readAsDataURL(pngFiles[0]);
+                }
+            }
+            
+            convertBtn.addEventListener('click', () => {
+                if (selectedFiles.length === 0) return;
+                
+                // Simulate conversion process
+                convertBtn.innerHTML = '<span class="btn-icon">⏳</span> Converting...';
+                convertBtn.disabled = true;
+                
+                // Simulate processing time
+                setTimeout(() => {
+                    convertBtn.innerHTML = '<span class="btn-icon">✅</span> Converted!';
+                    resultSection.style.display = 'block';
+                    
+                    // Reset button after delay
+                    setTimeout(() => {
+                        convertBtn.innerHTML = '<span class="btn-icon">🔄</span> Convert to PDF';
+                        convertBtn.disabled = false;
+                    }, 2000);
+                }, 1500);
+            });
+            
+            resetBtn.addEventListener('click', () => {
+                fileInput.value = '';
+                selectedFiles = [];
+                convertBtn.disabled = true;
+                previewContainer.style.display = 'none';
+                resultSection.style.display = 'none';
+                convertBtn.innerHTML = '<span class="btn-icon">🔄</span> Convert to PDF';
+            });
+            
+            downloadBtn.addEventListener('click', () => {
+                alert('In a real implementation, this would download your PDF file. This is a frontend demo only.');
+            });
+        });
+    </script>
+</body>
+</html>
