@@ -70,17 +70,13 @@
         }
         
         .main-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 15px;
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 20px;
         }
         
         /* Top Navigation Bar */
         .top-nav {
-            grid-column: 1 / -1;
             background: var(--bg-secondary);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
@@ -405,35 +401,7 @@
             margin-bottom: 3px;
         }
         
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .ad-sidebar {
-            background: var(--bg-secondary);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            padding: 15px;
-            text-align: center;
-            transition: var(--transition);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .ad-sidebar-top {
-            height: 250px;
-        }
-        
-        .ad-sidebar-bottom {
-            height: 300px;
-        }
-        
         footer {
-            grid-column: 1 / -1;
             text-align: center;
             padding: 30px 0 15px;
             color: var(--text-tertiary);
@@ -461,16 +429,6 @@
             background: rgba(248, 113, 113, 0.15);
             color: #991b1b;
             border: 1px solid var(--danger);
-        }
-        
-        @media (max-width: 1100px) {
-            .main-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .sidebar {
-                grid-row: 2;
-            }
         }
         
         @media (max-width: 768px) {
@@ -557,20 +515,6 @@
                 </a>
             </div>
         </nav>
-        
-        <!-- Top Banner Ad -->
-        <div class="ad-sidebar" style="grid-column: 1 / -1; height: 90px;">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '54133848fc74e874d48e135b0eec6124',
-                    'format' : 'iframe',
-                    'height' : 60,
-                    'width' : 468,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/54133848fc74e874d48e135b0eec6124/invoke.js"></script>
-        </div>
         
         <main class="app-container">
             <h1>Premium PNG to PDF Converter</h1>
@@ -662,24 +606,6 @@
                 </button>
             </div>
         </main>
-        
-        <aside class="sidebar">
-            <!-- Side Ad 1 -->
-            <div class="ad-sidebar ad-sidebar-top">
-                <script type='text/javascript' src='//pl28041393.effectivegatecpm.com/24/3e/2e/243e2e5d2dbb0c042aec1e5083d5f790.js'></script>
-            </div>
-            
-            <!-- Side Ad 2 -->
-            <div class="ad-sidebar ad-sidebar-bottom">
-                <script type='text/javascript' src='//pl28041412.effectivegatecpm.com/26/8a/9f/268a9f81cd38cba37fd92e1fb91dd088.js'></script>
-            </div>
-        </aside>
-        
-        <!-- Bottom Banner Ad -->
-        <div class="ad-sidebar" style="grid-column: 1 / -1; height: 90px;">
-            <script async="async" data-cfasync="false" src="//pl28041395.effectivegatecpm.com/1e2ba4d408ec5f6a09d56d3c3b7b9fd9/invoke.js"></script>
-            <div id="container-1e2ba4d408ec5f6a09d56d3c3b7b9fd9"></div>
-        </div>
         
         <footer>
             <p>© 2025 PNG to PDF Pro Converter. All rights reserved.</p>
