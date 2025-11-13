@@ -3,85 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PNG to PDF Converter</title>
-    <!-- AdSense/AdBlock Detection -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
+    <meta name="description" content="Premium PNG to PDF Converter - Convert multiple PNG images to high-quality PDF documents in batch. Dark mode only. 100% secure browser-based conversion.">
+    <meta name="keywords" content="png to pdf, convert png to pdf, online pdf converter, free pdf converter, image to pdf, png converter, pdf tool, batch conversion">
+    <meta name="author" content="Premium PNG to PDF Converter">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Premium PNG to PDF Converter - Batch Processing">
+    <meta property="og:description" content="Convert multiple PNG images to PDF documents in batch. Dark mode only. 100% secure browser-based conversion.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pngtopdf-virid.vercel.app/">
+    <meta property="og:image" content="https://pngtopdf-virid.vercel.app/preview.jpg">
+    <meta property="og:site_name" content="Premium PNG to PDF Converter">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Premium PNG to PDF Converter - Batch Processing">
+    <meta name="twitter:description" content="Convert multiple PNG images to PDF documents in batch. Dark mode only. 100% secure browser-based conversion.">
+    <meta name="twitter:image" content="https://pngtopdf-virid.vercel.app/preview.jpg">
+    
+    <title>Premium PNG to PDF Converter - Batch Processing | Convert Images to PDF</title>
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://pngtopdf-virid.vercel.app/">
+    
     <style>
+        :root {
+            /* Dark theme variables only */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #e2e8f0;
+            --text-tertiary: #cbd5e1;
+            --accent-primary: #818cf8;
+            --accent-secondary: #a5b4fc;
+            --accent-tertiary: #c7d2fe;
+            --success: #4ade80;
+            --warning: #facc15;
+            --danger: #f87171;
+            --border: #475569;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25);
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            transition: var(--transition);
         }
         
-        .container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 800px;
-            padding: 40px;
-            text-align: center;
-            position: relative;
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+        }
+        
+        /* Top Navigation Bar */
+        .top-nav {
+            grid-column: 1 / -1;
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 15px 25px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 1.8rem;
+            color: var(--accent-primary);
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent-primary);
         }
         
         h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         .subtitle {
-            color: #666;
-            margin-bottom: 30px;
             font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-bottom: 25px;
         }
         
-        .upload-area {
-            border: 3px dashed #ccc;
-            border-radius: 15px;
-            padding: 40px 20px;
-            margin: 30px 0;
-            transition: all 0.3s ease;
+        .app-container {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+        
+        .upload-section {
+            border: 2px dashed var(--border);
+            border-radius: var(--border-radius);
+            padding: 40px 25px;
+            text-align: center;
+            transition: var(--transition);
             cursor: pointer;
-            background: #fafafa;
+            margin-bottom: 30px;
+            background: var(--bg-primary);
         }
         
-        .upload-area:hover, .upload-area.dragover {
-            border-color: #667eea;
-            background: #f0f4ff;
+        .upload-section:hover, .upload-section.dragover {
+            border-color: var(--accent-primary);
+            background-color: rgba(129, 140, 248, 0.05);
+            transform: translateY(-2px);
         }
         
         .upload-icon {
             font-size: 4rem;
-            color: #667eea;
+            color: var(--accent-primary);
             margin-bottom: 15px;
         }
         
         .upload-text {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
         }
         
         .upload-hint {
-            color: #999;
-            font-size: 0.9rem;
+            color: var(--text-tertiary);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(129, 140, 248, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(129, 140, 248, 0.4);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
         
         .file-input {
@@ -94,34 +231,36 @@
         }
         
         .preview-title {
-            color: #333;
-            margin-bottom: 15px;
             font-size: 1.3rem;
-        }
-        
-        .image-preview {
-            max-width: 100%;
-            max-height: 300px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .image-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
             margin-top: 15px;
-            max-height: 150px;
-            overflow-y: auto;
         }
         
         .thumbnail {
-            width: 80px;
-            height: 80px;
+            width: 100%;
+            aspect-ratio: 1;
             object-fit: cover;
-            border-radius: 5px;
-            border: 2px solid #ddd;
+            border-radius: 10px;
+            border: 2px solid var(--border);
+            transition: var(--transition);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .thumbnail:hover {
+            border-color: var(--accent-primary);
+            transform: scale(1.03);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
         }
         
         .controls {
@@ -132,293 +271,420 @@
             flex-wrap: wrap;
         }
         
-        .btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
-        }
-        
         .btn-secondary {
-            background: #f8f9fa;
-            color: #333;
-            border: 2px solid #ddd;
-        }
-        
-        .btn-secondary:hover {
-            background: #e9ecef;
-        }
-        
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .btn-icon {
-            font-size: 1.2rem;
-        }
-        
-        .result-section {
-            margin-top: 30px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 15px;
-            display: none;
-        }
-        
-        .result-title {
-            color: #333;
-            margin-bottom: 15px;
-        }
-        
-        .download-btn {
-            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            padding: 14px 28px;
             font-size: 1rem;
             font-weight: 600;
+            border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 5px 15px rgba(86, 171, 47, 0.4);
         }
         
-        .download-btn:hover {
+        .btn-secondary:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--text-secondary);
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(86, 171, 47, 0.6);
-        }
-        
-        .features {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 40px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .feature {
-            flex: 1;
-            min-width: 200px;
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            color: #667eea;
-            margin-bottom: 15px;
-        }
-        
-        .feature-title {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-        
-        .feature-desc {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .ad-section {
-            margin: 20px 0;
-            text-align: center;
-        }
-        
-        .floating-ad {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1000;
-        }
-        
-        .status-message {
-            padding: 10px;
-            margin: 15px 0;
-            border-radius: 5px;
-            display: none;
-        }
-        
-        .status-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .status-error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
         }
         
         .progress-container {
             width: 100%;
-            background: #f0f0f0;
+            background: var(--bg-tertiary);
             border-radius: 10px;
             margin: 20px 0;
             display: none;
+            height: 12px;
+            overflow: hidden;
         }
         
         .progress-bar {
-            height: 20px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary));
             border-radius: 10px;
             width: 0%;
-            transition: width 0.3s ease;
+            transition: width 0.1s ease;
+        }
+        
+        .result-section {
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid var(--success);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            text-align: center;
+            display: none;
+            margin: 30px 0;
+            transition: var(--transition);
+        }
+        
+        .result-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .result-text {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .download-btn {
+            background: linear-gradient(90deg, #16a34a, #15803d);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(22, 163, 74, 0.3);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(22, 163, 74, 0.4);
+        }
+        
+        .batch-info {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 30px 0;
+            border: 1px solid var(--border);
+        }
+        
+        .batch-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .batch-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .batch-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .batch-feature-icon {
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+        
+        .batch-feature-text {
+            color: var(--text-secondary);
+        }
+        
+        .batch-feature-text strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 3px;
+        }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .ad-sidebar {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 15px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ad-sidebar-top {
+            height: 250px;
+        }
+        
+        .ad-sidebar-bottom {
+            height: 300px;
+        }
+        
+        footer {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 30px 0 15px;
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+            margin-top: 25px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .status-message {
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin: 15px 0;
+            display: none;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        
+        .status-success {
+            background: rgba(74, 222, 128, 0.15);
+            color: #166534;
+            border: 1px solid var(--success);
+        }
+        
+        .status-error {
+            background: rgba(248, 113, 113, 0.15);
+            color: #991b1b;
+            border: 1px solid var(--danger);
+        }
+        
+        @media (max-width: 1100px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                grid-row: 2;
+            }
         }
         
         @media (max-width: 768px) {
-            .container {
+            .main-container {
+                padding: 12px;
+            }
+            
+            .app-container {
                 padding: 20px;
             }
             
+            .top-nav {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
             h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .upload-section {
+                padding: 30px 15px;
+            }
+            
+            .upload-icon {
+                font-size: 3rem;
+            }
+            
+            .upload-text {
+                font-size: 1.3rem;
             }
             
             .controls {
                 flex-direction: column;
                 align-items: center;
+                gap: 12px;
             }
             
-            .btn {
+            .btn-primary, .btn-secondary {
                 width: 100%;
-                max-width: 300px;
+                max-width: 280px;
                 justify-content: center;
             }
             
-            .floating-ad {
-                right: 10px;
-                top: auto;
-                bottom: 20px;
-                transform: none;
+            .batch-features {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Top Ad Section -->
-    <div class="ad-section">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '54133848fc74e874d48e135b0eec6124',
-                'format' : 'iframe',
-                'height' : 60,
-                'width' : 468,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/54133848fc74e874d48e135b0eec6124/invoke.js"></script>
-        <script type='text/javascript' src='//pl28041393.effectivegatecpm.com/24/3e/2e/243e2e5d2dbb0c042aec1e5083d5f790.js'></script>
-        <script async="async" data-cfasync="false" src="//pl28041395.effectivegatecpm.com/1e2ba4d408ec5f6a09d56d3c3b7b9fd9/invoke.js"></script>
-        <div id="container-1e2ba4d408ec5f6a09d56d3c3b7b9fd9"></div>
-    </div>
-    
-    <!-- Floating Ad (Right Side) -->
-    <div class="floating-ad">
-        <script type='text/javascript' src='//pl28041412.effectivegatecpm.com/26/8a/9f/268a9f81cd38cba37fd92e1fb91dd088.js'></script>
-    </div>
-    
-    <div class="container">
-        <h1>PNG to PDF Converter</h1>
-        <p class="subtitle">Convert your PNG images to PDF documents quickly and easily</p>
-        
-        <div class="status-message" id="statusMessage"></div>
-        
-        <div class="progress-container" id="progressContainer">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-        
-        <div class="upload-area" id="uploadArea">
-            <div class="upload-icon">📁</div>
-            <p class="upload-text">Drag & Drop your PNG files here</p>
-            <p class="upload-hint">or click to browse files (Supports multiple files)</p>
-            <input type="file" class="file-input" id="fileInput" accept="image/png" multiple>
-        </div>
-        
-        <div class="preview-container" id="previewContainer">
-            <h3 class="preview-title">Selected Images</h3>
-            <div class="image-list" id="imageList"></div>
-        </div>
-        
-        <div class="controls">
-            <button class="btn btn-primary" id="convertBtn" disabled>
-                <span class="btn-icon">🔄</span>
-                Convert to PDF
-            </button>
-            <button class="btn btn-secondary" id="resetBtn">
-                <span class="btn-icon">🗑️</span>
-                Reset
-            </button>
-        </div>
-        
-        <div class="result-section" id="resultSection">
-            <h3 class="result-title">Conversion Complete!</h3>
-            <p>Your PDF file is ready to download</p>
-            <br>
-            <button class="download-btn" id="downloadBtn">
-                <span class="btn-icon">📥</span>
-                Download PDF
-            </button>
-        </div>
-        
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">⚡</div>
-                <h4 class="feature-title">Fast Conversion</h4>
-                <p class="feature-desc">Convert images to PDF in seconds</p>
+    <!-- Top Navigation Bar -->
+    <div class="main-container">
+        <nav class="top-nav">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                <div class="logo-text">PNG to PDF Pro</div>
             </div>
-            <div class="feature">
-                <div class="feature-icon">🔒</div>
-                <h4 class="feature-title">Secure</h4>
-                <p class="feature-desc">Files are processed locally in your browser</p>
+            
+            <div class="nav-links">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
             </div>
-            <div class="feature">
-                <div class="feature-icon">🆓</div>
-                <h4 class="feature-title">Free</h4>
-                <p class="feature-desc">No registration or payment required</p>
-            </div>
+        </nav>
+        
+        <!-- Top Banner Ad -->
+        <div class="ad-sidebar" style="grid-column: 1 / -1; height: 90px;">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '54133848fc74e874d48e135b0eec6124',
+                    'format' : 'iframe',
+                    'height' : 60,
+                    'width' : 468,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/54133848fc74e874d48e135b0eec6124/invoke.js"></script>
         </div>
-    </div>
-    
-    <!-- Bottom Ad Section -->
-    <div class="ad-section">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '54133848fc74e874d48e135b0eec6124',
-                'format' : 'iframe',
-                'height' : 60,
-                'width' : 468,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/54133848fc74e874d48e135b0eec6124/invoke.js"></script>
-        <script type='text/javascript' src='//pl28041393.effectivegatecpm.com/24/3e/2e/243e2e5d2dbb0c042aec1e5083d5f790.js'></script>
-        <script async="async" data-cfasync="false" src="//pl28041395.effectivegatecpm.com/1e2ba4d408ec5f6a09d56d3c3b7b9fd9/invoke.js"></script>
-        <div id="container-1e2ba4d408ec5f6a09d56d3c3b7b9fd9"></div>
+        
+        <main class="app-container">
+            <h1>Premium PNG to PDF Converter</h1>
+            <p class="subtitle">Convert multiple PNG images to high-quality PDF documents in batch. No signup required. 100% secure browser-based conversion.</p>
+            
+            <div class="status-message" id="statusMessage"></div>
+            
+            <div class="upload-section" id="uploadArea">
+                <div class="upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h2 class="upload-text">Upload PNG Files</h2>
+                <p class="upload-hint">Drag & drop your PNG files here or click to browse</p>
+                <button class="btn-primary">
+                    <i class="fas fa-folder-open"></i>
+                    <span>Choose Files</span>
+                </button>
+                <input type="file" class="file-input" id="fileInput" accept="image/png" multiple>
+            </div>
+            
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div class="preview-container" id="previewContainer">
+                <h3 class="preview-title">
+                    <i class="fas fa-images"></i>
+                    <span>Selected Images</span>
+                </h3>
+                <div class="image-list" id="imageList"></div>
+            </div>
+            
+            <div class="batch-info">
+                <h3 class="batch-title">
+                    <i class="fas fa-list-check"></i>
+                    <span>Batch Conversion Features</span>
+                </h3>
+                <div class="batch-features">
+                    <div class="batch-feature">
+                        <div class="batch-feature-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="batch-feature-text">
+                            <strong>Multiple Files</strong>
+                            Convert dozens of PNG files in a single operation
+                        </div>
+                    </div>
+                    <div class="batch-feature">
+                        <div class="batch-feature-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="batch-feature-text">
+                            <strong>Single PDF</strong>
+                            All images combined into one organized PDF document
+                        </div>
+                    </div>
+                    <div class="batch-feature">
+                        <div class="batch-feature-icon">
+                            <i class="fas fa-sort-amount-down"></i>
+                        </div>
+                        <div class="batch-feature-text">
+                            <strong>Preserve Order</strong>
+                            Images maintain their original sequence in the PDF
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button class="btn-primary" id="convertBtn" disabled>
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Convert to PDF</span>
+                </button>
+                <button class="btn-secondary" id="resetBtn">
+                    <i class="fas fa-trash-alt"></i>
+                    <span>Reset</span>
+                </button>
+            </div>
+            
+            <div class="result-section" id="resultSection">
+                <h3 class="result-title">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Conversion Complete!</span>
+                </h3>
+                <p class="result-text">Your PDF file with all images is ready to download</p>
+                <button class="download-btn" id="downloadBtn">
+                    <i class="fas fa-download"></i>
+                    <span>Download PDF</span>
+                </button>
+            </div>
+        </main>
+        
+        <aside class="sidebar">
+            <!-- Side Ad 1 -->
+            <div class="ad-sidebar ad-sidebar-top">
+                <script type='text/javascript' src='//pl28041393.effectivegatecpm.com/24/3e/2e/243e2e5d2dbb0c042aec1e5083d5f790.js'></script>
+            </div>
+            
+            <!-- Side Ad 2 -->
+            <div class="ad-sidebar ad-sidebar-bottom">
+                <script type='text/javascript' src='//pl28041412.effectivegatecpm.com/26/8a/9f/268a9f81cd38cba37fd92e1fb91dd088.js'></script>
+            </div>
+        </aside>
+        
+        <!-- Bottom Banner Ad -->
+        <div class="ad-sidebar" style="grid-column: 1 / -1; height: 90px;">
+            <script async="async" data-cfasync="false" src="//pl28041395.effectivegatecpm.com/1e2ba4d408ec5f6a09d56d3c3b7b9fd9/invoke.js"></script>
+            <div id="container-1e2ba4d408ec5f6a09d56d3c3b7b9fd9"></div>
+        </div>
+        
+        <footer>
+            <p>© 2025 PNG to PDF Pro Converter. All rights reserved.</p>
+            <p>Convert your PNG images to PDF documents quickly and securely</p>
+        </footer>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -427,6 +693,7 @@
             // Initialize jsPDF
             const { jsPDF } = window.jspdf;
             
+            // App functionality
             const uploadArea = document.getElementById('uploadArea');
             const fileInput = document.getElementById('fileInput');
             const convertBtn = document.getElementById('convertBtn');
@@ -521,13 +788,13 @@
                 if (selectedFiles.length === 0) return;
                 
                 try {
-                    convertBtn.innerHTML = '<span class="btn-icon">⏳</span> Converting...';
+                    convertBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Converting...';
                     convertBtn.disabled = true;
                     
                     // Create PDF
                     const pdf = new jsPDF();
                     
-                    // Process each image
+                    // Process each image with optimized speed
                     for (let i = 0; i < selectedFiles.length; i++) {
                         updateProgress((i / selectedFiles.length) * 100);
                         
@@ -543,6 +810,7 @@
                         const img = new Image();
                         img.src = imgData;
                         
+                        // Optimized image processing for faster conversion
                         await new Promise(resolve => {
                             img.onload = () => {
                                 // Calculate dimensions to fit page
@@ -565,7 +833,8 @@
                                 const x = (pageWidth - imgWidth) / 2;
                                 const y = (pageHeight - imgHeight) / 2;
                                 
-                                pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
+                                // Add image with optimized quality
+                                pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight, undefined, 'FAST');
                                 resolve();
                             };
                         });
@@ -578,20 +847,20 @@
                     
                     // Show result
                     setTimeout(() => {
-                        convertBtn.innerHTML = '<span class="btn-icon">✅</span> Converted!';
+                        convertBtn.innerHTML = '<i class="fas fa-check"></i> Converted!';
                         resultSection.style.display = 'block';
                         progressContainer.style.display = 'none';
                         
                         // Reset button after delay
                         setTimeout(() => {
-                            convertBtn.innerHTML = '<span class="btn-icon">🔄</span> Convert to PDF';
+                            convertBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Convert to PDF';
                             convertBtn.disabled = false;
-                        }, 2000);
-                    }, 500);
+                        }, 1000);
+                    }, 300);
                 } catch (error) {
                     console.error('Conversion error:', error);
                     showStatus('Error during conversion. Please try again.', 'error');
-                    convertBtn.innerHTML = '<span class="btn-icon">🔄</span> Convert to PDF';
+                    convertBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Convert to PDF';
                     convertBtn.disabled = false;
                     progressContainer.style.display = 'none';
                 }
@@ -612,7 +881,7 @@
                 convertBtn.disabled = true;
                 previewContainer.style.display = 'none';
                 resultSection.style.display = 'none';
-                convertBtn.innerHTML = '<span class="btn-icon">🔄</span> Convert to PDF';
+                convertBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Convert to PDF';
                 progressContainer.style.display = 'none';
                 statusMessage.style.display = 'none';
                 pdfBlob = null;
