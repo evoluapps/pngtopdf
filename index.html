@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PNG to PDF Converter</title>
+    <!-- AdSense/AdBlock Detection -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
     <style>
         * {
             margin: 0;
@@ -29,6 +37,7 @@
             max-width: 800px;
             padding: 40px;
             text-align: center;
+            position: relative;
         }
         
         h1 {
@@ -95,6 +104,24 @@
             max-height: 300px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            border: 2px solid #ddd;
         }
         
         .controls {
@@ -215,6 +242,54 @@
             font-size: 0.9rem;
         }
         
+        .ad-section {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .floating-ad {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+        
+        .status-message {
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
@@ -234,24 +309,59 @@
                 max-width: 300px;
                 justify-content: center;
             }
+            
+            .floating-ad {
+                right: 10px;
+                top: auto;
+                bottom: 20px;
+                transform: none;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Top Ad Section -->
+    <div class="ad-section">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '54133848fc74e874d48e135b0eec6124',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/54133848fc74e874d48e135b0eec6124/invoke.js"></script>
+        <script type='text/javascript' src='//pl28041393.effectivegatecpm.com/24/3e/2e/243e2e5d2dbb0c042aec1e5083d5f790.js'></script>
+        <script async="async" data-cfasync="false" src="//pl28041395.effectivegatecpm.com/1e2ba4d408ec5f6a09d56d3c3b7b9fd9/invoke.js"></script>
+        <div id="container-1e2ba4d408ec5f6a09d56d3c3b7b9fd9"></div>
+    </div>
+    
+    <!-- Floating Ad (Right Side) -->
+    <div class="floating-ad">
+        <script type='text/javascript' src='//pl28041412.effectivegatecpm.com/26/8a/9f/268a9f81cd38cba37fd92e1fb91dd088.js'></script>
+    </div>
+    
     <div class="container">
         <h1>PNG to PDF Converter</h1>
         <p class="subtitle">Convert your PNG images to PDF documents quickly and easily</p>
+        
+        <div class="status-message" id="statusMessage"></div>
+        
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
         
         <div class="upload-area" id="uploadArea">
             <div class="upload-icon">📁</div>
             <p class="upload-text">Drag & Drop your PNG files here</p>
             <p class="upload-hint">or click to browse files (Supports multiple files)</p>
-            <input type="file" class="file-input" id="fileInput" accept=".png" multiple>
+            <input type="file" class="file-input" id="fileInput" accept="image/png" multiple>
         </div>
         
         <div class="preview-container" id="previewContainer">
-            <h3 class="preview-title">Image Preview</h3>
-            <img id="imagePreview" class="image-preview" alt="Preview">
+            <h3 class="preview-title">Selected Images</h3>
+            <div class="image-list" id="imageList"></div>
         </div>
         
         <div class="controls">
@@ -293,19 +403,44 @@
             </div>
         </div>
     </div>
+    
+    <!-- Bottom Ad Section -->
+    <div class="ad-section">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '54133848fc74e874d48e135b0eec6124',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/54133848fc74e874d48e135b0eec6124/invoke.js"></script>
+        <script type='text/javascript' src='//pl28041393.effectivegatecpm.com/24/3e/2e/243e2e5d2dbb0c042aec1e5083d5f790.js'></script>
+        <script async="async" data-cfasync="false" src="//pl28041395.effectivegatecpm.com/1e2ba4d408ec5f6a09d56d3c3b7b9fd9/invoke.js"></script>
+        <div id="container-1e2ba4d408ec5f6a09d56d3c3b7b9fd9"></div>
+    </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize jsPDF
+            const { jsPDF } = window.jspdf;
+            
             const uploadArea = document.getElementById('uploadArea');
             const fileInput = document.getElementById('fileInput');
             const convertBtn = document.getElementById('convertBtn');
             const resetBtn = document.getElementById('resetBtn');
             const previewContainer = document.getElementById('previewContainer');
-            const imagePreview = document.getElementById('imagePreview');
+            const imageList = document.getElementById('imageList');
             const resultSection = document.getElementById('resultSection');
             const downloadBtn = document.getElementById('downloadBtn');
+            const statusMessage = document.getElementById('statusMessage');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressBar = document.getElementById('progressBar');
             
             let selectedFiles = [];
+            let pdfBlob = null;
             
             // Event listeners for drag and drop
             uploadArea.addEventListener('click', () => fileInput.click());
@@ -337,43 +472,139 @@
                 const pngFiles = files.filter(file => file.type === 'image/png' || file.name.toLowerCase().endsWith('.png'));
                 
                 if (pngFiles.length === 0) {
-                    alert('Please select PNG files only.');
+                    showStatus('Please select PNG files only.', 'error');
                     return;
                 }
                 
                 selectedFiles = pngFiles;
                 convertBtn.disabled = false;
                 
-                // Show preview of the first image
-                if (pngFiles.length > 0) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        imagePreview.src = e.target.result;
-                        previewContainer.style.display = 'block';
-                    };
-                    reader.readAsDataURL(pngFiles[0]);
-                }
+                // Show previews
+                showImagePreviews(pngFiles);
             }
             
-            convertBtn.addEventListener('click', () => {
+            function showImagePreviews(files) {
+                imageList.innerHTML = '';
+                previewContainer.style.display = 'block';
+                
+                files.forEach((file, index) => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'thumbnail';
+                        img.alt = `Preview ${index + 1}`;
+                        imageList.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+            
+            function showStatus(message, type) {
+                statusMessage.textContent = message;
+                statusMessage.className = 'status-message';
+                statusMessage.classList.add(`status-${type}`);
+                statusMessage.style.display = 'block';
+                
+                // Hide after 5 seconds
+                setTimeout(() => {
+                    statusMessage.style.display = 'none';
+                }, 5000);
+            }
+            
+            function updateProgress(percent) {
+                progressContainer.style.display = 'block';
+                progressBar.style.width = `${percent}%`;
+            }
+            
+            convertBtn.addEventListener('click', async () => {
                 if (selectedFiles.length === 0) return;
                 
-                // Simulate conversion process
-                convertBtn.innerHTML = '<span class="btn-icon">⏳</span> Converting...';
-                convertBtn.disabled = true;
-                
-                // Simulate processing time
-                setTimeout(() => {
-                    convertBtn.innerHTML = '<span class="btn-icon">✅</span> Converted!';
-                    resultSection.style.display = 'block';
+                try {
+                    convertBtn.innerHTML = '<span class="btn-icon">⏳</span> Converting...';
+                    convertBtn.disabled = true;
                     
-                    // Reset button after delay
+                    // Create PDF
+                    const pdf = new jsPDF();
+                    
+                    // Process each image
+                    for (let i = 0; i < selectedFiles.length; i++) {
+                        updateProgress((i / selectedFiles.length) * 100);
+                        
+                        const file = selectedFiles[i];
+                        const imgData = await readFileAsDataURL(file);
+                        
+                        // Add image to PDF
+                        if (i > 0) {
+                            pdf.addPage();
+                        }
+                        
+                        // Get image dimensions
+                        const img = new Image();
+                        img.src = imgData;
+                        
+                        await new Promise(resolve => {
+                            img.onload = () => {
+                                // Calculate dimensions to fit page
+                                const pageWidth = pdf.internal.pageSize.getWidth();
+                                const pageHeight = pdf.internal.pageSize.getHeight();
+                                const imgRatio = img.width / img.height;
+                                const pageRatio = pageWidth / pageHeight;
+                                
+                                let imgWidth, imgHeight;
+                                
+                                if (imgRatio > pageRatio) {
+                                    imgWidth = pageWidth;
+                                    imgHeight = pageWidth / imgRatio;
+                                } else {
+                                    imgHeight = pageHeight;
+                                    imgWidth = pageHeight * imgRatio;
+                                }
+                                
+                                // Center image on page
+                                const x = (pageWidth - imgWidth) / 2;
+                                const y = (pageHeight - imgHeight) / 2;
+                                
+                                pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
+                                resolve();
+                            };
+                        });
+                    }
+                    
+                    updateProgress(100);
+                    
+                    // Save PDF as blob
+                    pdfBlob = pdf.output('blob');
+                    
+                    // Show result
                     setTimeout(() => {
-                        convertBtn.innerHTML = '<span class="btn-icon">🔄</span> Convert to PDF';
-                        convertBtn.disabled = false;
-                    }, 2000);
-                }, 1500);
+                        convertBtn.innerHTML = '<span class="btn-icon">✅</span> Converted!';
+                        resultSection.style.display = 'block';
+                        progressContainer.style.display = 'none';
+                        
+                        // Reset button after delay
+                        setTimeout(() => {
+                            convertBtn.innerHTML = '<span class="btn-icon">🔄</span> Convert to PDF';
+                            convertBtn.disabled = false;
+                        }, 2000);
+                    }, 500);
+                } catch (error) {
+                    console.error('Conversion error:', error);
+                    showStatus('Error during conversion. Please try again.', 'error');
+                    convertBtn.innerHTML = '<span class="btn-icon">🔄</span> Convert to PDF';
+                    convertBtn.disabled = false;
+                    progressContainer.style.display = 'none';
+                }
             });
+            
+            function readFileAsDataURL(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                });
+            }
             
             resetBtn.addEventListener('click', () => {
                 fileInput.value = '';
@@ -382,10 +613,29 @@
                 previewContainer.style.display = 'none';
                 resultSection.style.display = 'none';
                 convertBtn.innerHTML = '<span class="btn-icon">🔄</span> Convert to PDF';
+                progressContainer.style.display = 'none';
+                statusMessage.style.display = 'none';
+                pdfBlob = null;
             });
             
             downloadBtn.addEventListener('click', () => {
-                alert('In a real implementation, this would download your PDF file. This is a frontend demo only.');
+                if (!pdfBlob) {
+                    showStatus('No PDF available for download.', 'error');
+                    return;
+                }
+                
+                const url = URL.createObjectURL(pdfBlob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `converted-${new Date().getTime()}.pdf`;
+                document.body.appendChild(a);
+                a.click();
+                
+                // Clean up
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 100);
             });
         });
     </script>
