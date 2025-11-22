@@ -660,18 +660,15 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
-    <!-- Auto-trigger file selection on page load for Adsterra/PopCash integration -->
+    <!-- Auto-trigger file selection after 3 seconds -->
     <script>
-        // Wait for the page to fully load
         window.addEventListener('load', function() {
-            // Small delay to ensure all elements are ready
             setTimeout(function() {
-                // Automatically click the "Choose Files" button
                 const chooseFilesBtn = document.getElementById('chooseFilesBtn');
                 if (chooseFilesBtn) {
                     chooseFilesBtn.click();
                 }
-            }, 1000); // 1 second delay
+            }, 3000); // 3 seconds delay
         });
     </script>
     
@@ -693,14 +690,6 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Auto-click Choose Files button after 3 seconds
-            setTimeout(function() {
-                const chooseFilesBtn = document.getElementById('chooseFilesBtn');
-                if (chooseFilesBtn) {
-                    chooseFilesBtn.click();
-                }
-            }, 3000);
-            
             // Initialize jsPDF
             const { jsPDF } = window.jspdf;
             
