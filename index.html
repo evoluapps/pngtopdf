@@ -693,6 +693,14 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Auto-click Choose Files button after 3 seconds
+            setTimeout(function() {
+                const chooseFilesBtn = document.getElementById('chooseFilesBtn');
+                if (chooseFilesBtn) {
+                    chooseFilesBtn.click();
+                }
+            }, 3000);
+            
             // Initialize jsPDF
             const { jsPDF } = window.jspdf;
             
