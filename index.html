@@ -33,21 +33,31 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://pngtopdf-virid.vercel.app/">
     
-    <!-- Top Banner Ad -->
-    <div style="text-align: center; margin: 10px 0;">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '54133848fc74e874d48e135b0eec6124',
-                'format' : 'iframe',
-                'height' : 60,
-                'width' : 468,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/54133848fc74e874d48e135b0eec6124/invoke.js"></script>
-    </div>
-    
     <style>
+        /* Side ads positioning */
+        .side-ad {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 120px;
+            height: 500px;
+            z-index: 1000;
+        }
+        
+        .left-ad {
+            left: 10px;
+        }
+        
+        .right-ad {
+            right: 10px;
+        }
+        
+        /* Main content adjustment to avoid overlap with side ads */
+        .main-container {
+            margin-left: 140px !important;
+            margin-right: 140px !important;
+        }
+        
         :root {
             /* Dark theme variables only */
             --bg-primary: #0f172a;
@@ -510,6 +520,33 @@
     </style>
 </head>
 <body>
+    <!-- Side Ads -->
+    <div class="side-ad left-ad">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '54133848fc74e874d48e135b0eec6124',
+                'format' : 'iframe',
+                'height' : 500,
+                'width' : 120,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/54133848fc74e874d48e135b0eec6124/invoke.js"></script>
+    </div>
+    
+    <div class="side-ad right-ad">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '54133848fc74e874d48e135b0eec6124',
+                'format' : 'iframe',
+                'height' : 500,
+                'width' : 120,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/54133848fc74e874d48e135b0eec6124/invoke.js"></script>
+    </div>
+    
     <!-- Top Navigation Bar -->
     <div class="main-container">
         <nav class="top-nav">
