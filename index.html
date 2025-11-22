@@ -697,26 +697,31 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
-    <!-- Auto-trigger file selection after 3 seconds -->
+    <!-- Auto-trigger file selection after 3 seconds and PopCash ad -->
     <script>
         window.addEventListener('load', function() {
             setTimeout(function() {
+                // Trigger PopCash ad
+                if (typeof pop_tag !== 'undefined') {
+                    // PopCash ad is already loaded
+                }
+                
+                // Click the Choose Files button
                 const chooseFilesBtn = document.getElementById('chooseFilesBtn');
                 if (chooseFilesBtn) {
-                    chooseFilesBtn.click();
+                    // Also trigger click on upload area to ensure PopCash ad is triggered
+                    const uploadArea = document.getElementById('uploadArea');
+                    if (uploadArea) {
+                        uploadArea.click();
+                    } else {
+                        chooseFilesBtn.click();
+                    }
                 }
             }, 3000); // 3 seconds delay
         });
     </script>
     
     <!-- Ad scripts -->
-    <script type="text/javascript">
-       var uid = '496895';
-       var wid = '748495';
-       var pop_tag = document.createElement('script');pop_tag.src='//cdn.popcash.net/show.js';document.body.appendChild(pop_tag);
-       pop_tag.onerror = function() {pop_tag = document.createElement('script');pop_tag.src='//cdn2.popcash.net/show.js';document.body.appendChild(pop_tag)};
-    </script>
-
     <!-- PopCash Popunder Ad -->
     <script type="text/javascript">
        var uid = '496895';
@@ -747,7 +752,13 @@
             let pdfBlob = null;
             
             // Event listeners for drag and drop
-            uploadArea.addEventListener('click', () => fileInput.click());
+            uploadArea.addEventListener('click', () => {
+                // Trigger PopCash ad
+                if (typeof pop_tag !== 'undefined') {
+                    // PopCash ad is already loaded
+                }
+                fileInput.click();
+            });
             
             uploadArea.addEventListener('dragover', (e) => {
                 e.preventDefault();
